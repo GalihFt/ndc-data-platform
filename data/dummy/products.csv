@@ -1,0 +1,51 @@
+product_id,product_name,category,unit
+1,Beras Premium 5 kg,Sembako,PCS
+2,Beras Medium 5 kg,Sembako,PCS
+3,Gula Pasir 1 kg,Sembako,PCS
+4,Minyak Goreng 1 liter,Sembako,PCS
+5,Tepung Terigu 1 kg,Sembako,PCS
+6,Garam Beryodium 500 g,Bumbu,PCS
+7,Kecap Manis 250 ml,Bumbu,PCS
+8,Saus Sambal 250 ml,Bumbu,PCS
+9,Kaldu Bubuk 100 g,Bumbu,PCS
+10,Lada Bubuk 50 g,Bumbu,PCS
+11,Air Mineral 600 ml,Minuman,PCS
+12,Teh Botol 350 ml,Minuman,PCS
+13,Susu UHT 1 liter,Minuman,PCS
+14,Kopi Bubuk 200 g,Minuman,PCS
+15,Sirup Jeruk 600 ml,Minuman,PCS
+16,Mi Instan Goreng,Makanan Instan,PCS
+17,Mi Instan Kuah,Makanan Instan,PCS
+18,Bubur Instan 50 g,Makanan Instan,PCS
+19,Sarden Kaleng 155 g,Makanan Instan,PCS
+20,Kornet Kaleng 198 g,Makanan Instan,PCS
+21,Biskuit Kelapa 200 g,Camilan,PCS
+22,Wafer Cokelat 100 g,Camilan,PCS
+23,Keripik Kentang 60 g,Camilan,PCS
+24,Kacang Panggang 100 g,Camilan,PCS
+25,Permen Mint 100 g,Camilan,PCS
+26,Sabun Mandi 80 g,Perawatan Tubuh,PCS
+27,Sampo 170 ml,Perawatan Tubuh,PCS
+28,Pasta Gigi 190 g,Perawatan Tubuh,PCS
+29,Sikat Gigi Dewasa,Perawatan Tubuh,PCS
+30,Sabun Cuci Tangan 250 ml,Perawatan Tubuh,PCS
+31,Detergen Bubuk 800 g,Kebersihan Rumah,PCS
+32,Pelembut Pakaian 800 ml,Kebersihan Rumah,PCS
+33,Pembersih Lantai 800 ml,Kebersihan Rumah,PCS
+34,Sabun Cuci Piring 750 ml,Kebersihan Rumah,PCS
+35,Pembersih Kaca 500 ml,Kebersihan Rumah,PCS
+36,Tisu Wajah 250 lembar,Perlengkapan Rumah,PCS
+37,Tisu Gulung 10 rol,Perlengkapan Rumah,PCS
+38,Kantong Sampah 20 lembar,Perlengkapan Rumah,PCS
+39,Spons Cuci Piring,Perlengkapan Rumah,PCS
+40,Kain Lap Serbaguna,Perlengkapan Rumah,PCS
+41,Popok Bayi Ukuran M 20 pcs,Perawatan Bayi,PCS
+42,Tisu Basah Bayi 50 lembar,Perawatan Bayi,PCS
+43,Sabun Bayi 200 ml,Perawatan Bayi,PCS
+44,Sampo Bayi 200 ml,Perawatan Bayi,PCS
+45,Minyak Telon 60 ml,Perawatan Bayi,PCS
+46,Buku Tulis 38 lembar,Alat Tulis,PCS
+47,Pulpen Hitam,Alat Tulis,PCS
+48,Pensil 2B,Alat Tulis,PCS
+49,Penghapus Putih,Alat Tulis,PCS
+50,Penggaris 30 cm,Alat Tulis,PCS
