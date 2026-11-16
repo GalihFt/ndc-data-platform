@@ -1,0 +1,7 @@
+# Kedua database ada di server PostgreSQL lokal yang sama.
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=isi_password_postgres
+OLTP_DATABASE=ndc_oltp
+DWH_DATABASE=ndc_dwh

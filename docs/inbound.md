@@ -11,8 +11,8 @@ movement agar mendukung sumber GI untuk stok keluar, dan menambahkan view
 ```text
 docs/                 Penjelasan desain dan diagram
 sql/oltp/             Tabel dan proses transaksi operasional
-sql/dwh/              Tempat SQL data warehouse pada tahap berikutnya
-etl/                  Tempat pipeline ETL pada tahap berikutnya
+sql/dwh/              Setup database DWH, staging, dimension, dan fact
+etl/                  Script Python pengatur pipeline ELT
 ```
 
 Desain awal menggunakan delapan tabel: `suppliers`, `products`, `warehouses`,

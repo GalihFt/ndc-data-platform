@@ -1,0 +1,1 @@
+SELECT * FROM dwh.fact_receiving;

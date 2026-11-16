@@ -14,11 +14,22 @@
 - [Import data awal CSV](sql/oltp/05_import_dummy.sql)
 - [Panduan dan ringkasan data dummy](docs/dummy-data.md)
 
-Folder `sql/dwh/` dan `etl/` disiapkan untuk tahap selanjutnya.
+- [Desain tabel OLAP: dimension dan fact](docs/dwh.md)
+- [Pembuatan database DWH](sql/dwh/00_create_database.sql)
+- [Tabel selective staging](sql/dwh/01_staging_tables.sql)
+- [Tabel DWH](sql/dwh/02_dwh_tables.sql)
+- [Panduan ELT Python + SQL](docs/elt.md)
+- [Script ELT](etl/run_elt.py)
+
+Database analitik `ndc_dwh` terpisah dari `ndc_oltp`, dengan schema `staging`
+untuk data sumber terpilih dan `dwh` untuk dimension/fact. Alur yang dituju
+adalah ELT: extract dari OLTP, load ke staging, lalu transform di DWH.
+Pipeline awal memakai Python + SQLAlchemy untuk extract/load dan SQL PostgreSQL
+untuk transform/validasi, dengan full refresh data terpilih.
 
 **Project:** Warehouse Inventory & Order Fulfillment Data Platform  
 **Level:** Intermediate  
-**Architecture:** OLTP → ETL → OLAP → Dashboard  
+**Architecture:** OLTP → Extract & Load → Staging → Transform → OLAP → Dashboard
 **Environment:** Local (no cloud)
 
 ## 1. Business Case
@@ -32,7 +43,7 @@ PT Nusantara Distribution Center (NDC) adalah perusahaan distribusi fiktif yang 
 
 **Masalah bisnis:** Data transaksi tersedia, tetapi manajemen kesulitan memantau penjualan, ketersediaan stok, dan efektivitas pemenuhan pesanan secara terpusat.
 
-**Tujuan project:** Membangun database operasional (OLTP), pipeline ETL, data warehouse (OLAP), dan dashboard analitik secara lokal.
+**Tujuan project:** Membangun database operasional (OLTP), pipeline ELT, data warehouse (OLAP), dan dashboard analitik secara lokal.
 
 ## 2. Scope
 
@@ -44,7 +55,7 @@ PT Nusantara Distribution Center (NDC) adalah perusahaan distribusi fiktif yang 
 - Pengecekan dan reservasi stok saat konfirmasi SO.
 - Pengiriman satu kali untuk seluruh item SO.
 - Histori pergerakan stok masuk dan keluar.
-- ETL batch, validasi kualitas data, serta incremental load pada fase lanjutan.
+- ELT batch, validasi kualitas data, serta incremental load pada fase lanjutan.
 - Data warehouse dan dashboard analitik.
 
 ### Out of Scope (v1)
@@ -163,8 +174,8 @@ PT Nusantara Distribution Center (NDC) adalah perusahaan distribusi fiktif yang 
 | S06 | SO dikirim lalu diselesaikan | Stok berkurang satu kali; status `SHIPPED → COMPLETED`. |
 | S07 | Produk sama tersedia pada dua gudang | Stok dan transaksi masing-masing gudang terpisah. |
 | S08 | Harga produk berubah setelah transaksi lama | Harga pada transaksi lama tetap. |
-| S09 | ETL dijalankan ulang tanpa data baru | Data warehouse tidak menggandakan record atau nilai KPI. |
-| S10 | Ada transaksi baru/berubah setelah ETL terakhir | Incremental load memproses perubahan relevan tanpa duplikasi. |
+| S09 | ELT dijalankan ulang tanpa data baru | Data warehouse tidak menggandakan record atau nilai KPI. |
+| S10 | Ada transaksi baru/berubah setelah ELT terakhir | Incremental load memproses perubahan relevan tanpa duplikasi. |
 
 ## 8. Analytical Requirements
 
@@ -187,20 +198,19 @@ PT Nusantara Distribution Center (NDC) adalah perusahaan distribusi fiktif yang 
 PostgreSQL: ndc_oltp
         |
         v
-Python ETL (SQLAlchemy / Pandas)
+Python + SQLAlchemy (Extract & Load)
         |
         v
 PostgreSQL: ndc_dwh
-  ├── staging
-  ├── dimensional model (facts & dimensions)
-  └── analytics
+  ├── staging (data sumber terpilih)
+  └── dwh (SQL transform → facts & dimensions)
         |
         v
 Power BI / Metabase Dashboard
 ```
 
 - OLTP dan DWH menggunakan database terpisah, boleh pada server PostgreSQL lokal yang sama.
-- ETL v1 dijalankan manual (batch); incremental load dan scheduling ditambahkan setelah alur dasar bekerja.
+- ELT v1 dijalankan manual (batch); incremental load dan scheduling ditambahkan setelah alur dasar bekerja.
 - Dashboard membaca data analitik dari DWH, bukan tabel OLTP langsung.
 
 ## 10. Implementation Milestones
@@ -208,7 +218,7 @@ Power BI / Metabase Dashboard
 - [ ] **M1 — Conceptual ERD:** tentukan entitas, hubungan, dan cardinality.
 - [ ] **M2 — Logical/Physical OLTP:** tentukan atribut, PK/FK, tipe data, constraints, dan normalisasi.
 - [ ] **M3 — Simulated Transactions:** buat data master dan jalankan skenario S01–S08.
-- [ ] **M4 — ETL Batch:** ekstraksi OLTP, staging, validasi, transformasi, dan load.
+- [ ] **M4 — ELT Batch:** ekstraksi OLTP, load staging, validasi, dan transformasi ke DWH.
 - [ ] **M5 — OLAP Model:** tentukan grain, fact, dimension, serta historisasi yang diperlukan.
 - [ ] **M6 — Dashboard:** tampilkan KPI AR-01–AR-08.
 - [ ] **M7 — Incremental & Reliability:** uji S09–S10, idempotency, logging, dan scheduling lokal.
