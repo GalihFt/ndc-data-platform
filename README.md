@@ -2,6 +2,7 @@
 
 ## File Implementasi
 
+- [Diagram proses inbound dan outbound](docs/transaction-flow.md)
 - [Panduan inbound dan cara menjalankan SQL](docs/inbound.md)
 - [Pembuatan database OLTP](sql/oltp/00_create_database.sql)
 - [Tabel OLTP inbound](sql/oltp/01_tables.sql)

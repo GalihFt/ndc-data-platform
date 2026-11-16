@@ -1,5 +1,7 @@
 # Inbound OLTP
 
+[Diagram proses inbound dan outbound](transaction-flow.md)
+
 Setelah inbound, lanjutkan ke [outbound](outbound.md). File `03` memperluas
 movement agar mendukung sumber GI untuk stok keluar, dan menambahkan view
 `oltp.inventory_stock` yang memperhitungkan stok masuk, keluar, serta reservasi.

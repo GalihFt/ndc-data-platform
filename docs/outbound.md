@@ -1,5 +1,7 @@
 # Outbound OLTP
 
+[Diagram proses inbound dan outbound](transaction-flow.md)
+
 Outbound memisahkan pesanan pelanggan (SO) dari pengeluaran barang gudang (GI).
 Satu SO dipenuhi satu gudang melalui satu GI penuh. Posting GI dianggap sebagai
 konfirmasi pengiriman pada v1. Tidak ada partial shipment atau backorder.
